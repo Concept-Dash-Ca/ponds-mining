@@ -24,13 +24,13 @@ const retrievePDF = async (pdfId) => {
   const response = await axios.get(pdfLink + pdfId, {
     responseType: "arraybuffer",
   });
+
   const pdfData = await pdfParse(new Uint8Array(response.data));
 
   return pdfData;
 };
 
 const checkProject = async (project) => {
-  console.log(`Mining PDF - ${project["PDF_LINK"]}`);
   const result = JSON.parse(fs.readFileSync('./result.json', {encoding: "utf-8"}))
   try {
     const pdf = await retrievePDF(project["PDF_LINK"]);
@@ -56,6 +56,7 @@ const main = async () => {
   console.log(`Mining Started for ${projects.length} projects`);
 
   for (let i = 0; i < projects.length; i++) {
+    console.log(`Mining Project ${i}`);
     if(projects[i].attributes.PDF_LINK !== null)
         await checkProject(projects[i].attributes);
   }
