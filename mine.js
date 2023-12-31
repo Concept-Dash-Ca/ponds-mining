@@ -17,7 +17,7 @@ const log = (content, filePath) => {
 
 const searchKeyword = (pdfData) => {
   const searchText = pdfData.text;
-  return searchText.includes("pond ") || searchText.includes("Pond ");
+  return searchText.includes(" pond ") || searchText.includes(" Pond ");
 };
 
 const retrievePDF = async (pdfId) => {
