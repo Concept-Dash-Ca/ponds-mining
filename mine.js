@@ -56,7 +56,8 @@ const main = async () => {
   console.log(`Mining Started for ${projects.length} projects`);
 
   for (let i = 0; i < projects.length; i++) {
-    await checkProject(projects[i].attributes);
+    if(projects[i].attributes.PDF_LINK !== null)
+        await checkProject(projects[i].attributes);
   }
 };
 
